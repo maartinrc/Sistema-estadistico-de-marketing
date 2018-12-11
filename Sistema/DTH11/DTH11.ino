@@ -41,4 +41,5 @@ void loop() {
   Serial.print(" *C ");
   Serial.print(f);
   Serial.print(" *F\t");
+  Serial.println();
 }

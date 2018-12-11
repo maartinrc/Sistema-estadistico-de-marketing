@@ -5,6 +5,13 @@
 #include <Time.h>
 #include <TimeLib.h>
 
+
+#include <DHT.h>
+// Definimos el pin digital donde se conecta el sensor
+#define DHTPIN 13
+// Dependiendo del tipo de sensor
+#define DHTTYPE DHT11
+
 byte mac[] = {0x00,0xAA,0xBB,0xCC,0xDE, 0x02};
 
 IPAddress ip(192,168,1,99);
@@ -33,9 +40,12 @@ long tiempo;
 boolean bandera = false;
 
 //***********SENSOR***********
+int conta = 0; //Variable para guardar el conteo de los pulsos
+int sensor = 8;
 
 
-
+//***************SENSOR************************
+DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
   // Espera 1 segundo para que se inicie la tarjeta Ethernet
@@ -50,6 +60,11 @@ void setup() {
    pinMode(EchoPin, INPUT);
  time_t t = now();//Declaramos la variable time_t t 
  setTime(0,0,0,1,01,2018);
+
+ pinMode(sensor, INPUT);
+
+ dht.begin();
+ 
 }
 
 void loop() {
@@ -75,7 +90,43 @@ else if(distancia <= 7){
 } 
 
 //************SENSORES*********
+if ( digitalRead(sensor) == LOW ) { 
+      conta++; //Incrementa el contador 
+      Serial.println(conta);
+      delay(400);
+      }
 
+
+/*********Sensores***********/
+
+
+   // Esperamos 5 segundos entre medidas
+  delay(5000);
+ 
+  // Leemos la humedad relativa
+  float h = dht.readHumidity();
+  // Leemos la temperatura en grados centígrados (por defecto)
+  float t = dht.readTemperature();
+  // Leemos la temperatura en grados Fahreheit
+  float f = dht.readTemperature(true);
+ 
+  // Comprobamos si ha habido algún error en la lectura
+  if (isnan(h) || isnan(t) || isnan(f)) {
+    Serial.println("Error obteniendo los datos del sensor DHT11");
+    return;
+  }
+ Serial.print("Humedad: ");
+  Serial.print(h);
+  Serial.print(" %\t");
+  Serial.print("Temperatura: ");
+  Serial.print(t);
+  Serial.print(" *C ");
+  Serial.print(f);
+  Serial.print(" *F\t");
+  Serial.println();
+
+
+//**********************
 
   // Si hay datos que llegan por la conexion los envia a la puerta serial
   if (client.available()) {
