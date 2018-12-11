@@ -1,49 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <style>
+  <head>
+    <style>
+
+    @media (min-width: 768px) {
+
+    .position-md-absolute {
+        position: absolute;
+    }
+    .navbar-nav .nav-item:nth-child(#{$nth-nav-item-that-needs-margin-right}) {
+        margin-right: $width-of-navbar-brand-or-logo-in-px + ($padding-x-for-navbar-brand-or-logo-in-px * 2);
+    }
+
+}
+      h1{
+        font-family: comic,
+         sans-serif;
+      }
+       img#logo{
+           display: block;
+           width: 40%;
+           margin: auto;
+
+       }
 
 
-  </style>
+
+
+    </style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <script src="js/bootstrap.min.js"></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Inicio - Sistema Estadístico de Marketing</title>
-</head>
-<body>
-  <div class="container">
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Inicio</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Tablas</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">A cerca de...</a>
-      </li>
-    </ul>
-  </nav>
-  </div>
+    <title>Inicio - Sistema Estadístico de Marketing</title>
+  </head>
+  <body class="bg-secondary">
+    <center>
+    <div class="row justify-content-md-center shadow p-3 m-5 mb-5 bg-white rounded" style="display: flex; align-items: center; width:70%; text-align: center; padding:30px;" >
+      <div class = " justify-content-md-center" style="display: flex; align-items: center;  text-align: center; padding:30px ">
+            <img id="logo" src="img/logo.png" alt="Sistema Estadístico">
 
-<div clas=".container">
-  <div class ="row">
-    <div class = "col-sm-12">
-      <h1 class="page-header text-center">Sistema Estadístico de Marketing</h1>
+      </div>
+
+      <div class = "col-md-12 justify-content-md-center" style="display: flex; align-items: center;  text-align: center">
+            <h1 class="page-header text-center">Sistema Estadístico de Marketing</h1>
+
+      </div>
+            <div class="row justify-content-md-center col-md-12" style="display: flex; align-items: center; width:80%; text-align: center; padding: 30px">
+              <center>
+              <a href="Vistas/Nosotros.html"style="text-decoration:none; color:black">
+              <button type="button" class="btn btn-lg btn-warning m-3">Nosotros</button>
+              </a>
+              <a href="Vistas/Tabla.html"style="text-decoration:none; color:black">
+              <button type="button" class="btn btn-lg btn-info m-3 ">Tablas</button>
+              </a>
+              <a href="Vistas/About.html"style="text-decoration:none; color:black">
+              <button type="button" class="btn btn-lg btn-dark m-3 ">A cerca del proyecto</button>
+              </a>
+            </center>
+            </div>
     </div>
 
+  </center>
 
-  </div>
-
-
-</div>
-
-
-
-  </div>
-</body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js" ></script>
+  </body>
 </html>
