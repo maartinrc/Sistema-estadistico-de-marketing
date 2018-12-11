@@ -30,12 +30,11 @@ $sql2="INSERT INTO SENSOR_INFRARROJO(FECHA,CANTIDAD_P,MAC) VALUES('".$time."','"
  mysqli_query($conection,$sql1);
  mysqli_query($conection,$sql2);
 
+
+	$sql3="INSERT INTO ESTADISTICA(MAC,ID_ULTRA,ID_INFRA,ID_TEMP) VALUES('".$mac."','".$tiempo."',".$numP.",'".$temp."');";
+
+	mysqli_query($conection,$sql3);
+
  mysqli_close($conection);  
-/*	$sqlAux1="SELECT ID_ULTRA FROM ";
-	$sqlAux2="";
-	$sqlAux3="";
-
-	$sql3="INSERT INTO ESTADISTICA(MAC,ID_ULTRA,ID_INFRA,ID_TEMP) VALUES('".$mac."',id,id,id);";*/
-
 
 ?>
