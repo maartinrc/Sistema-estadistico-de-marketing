@@ -2,6 +2,9 @@
 #include <SPI.h>
 #include <Ethernet.h>
 
+#include <Time.h>
+#include <TimeLib.h>
+
 byte mac[] = {0x00,0xAA,0xBB,0xCC,0xDE, 0x02};
 
 IPAddress ip(192,168,1,99);
@@ -23,7 +26,11 @@ const unsigned long intervaloConexion = 60000;// 1 minuto
 
 
 //***********SENSOR***********
-
+const int EchoPin = 5;
+const int TriggerPin = 6;
+float distancia;
+long tiempo;
+boolean bandera = false;
 
 //***********SENSOR***********
 
@@ -38,11 +45,34 @@ void setup() {
    // Imprime la direccion IP de la tarjeta
   //Serial.print("Direccion IP: ");
  // Serial.println(Ethernet.localIP())
+
+   pinMode(TriggerPin, OUTPUT);
+   pinMode(EchoPin, INPUT);
+ time_t t = now();//Declaramos la variable time_t t 
+ setTime(0,0,0,1,01,2018);
 }
 
 void loop() {
 //*************SENSORES**********
+  digitalWrite(TriggerPin, HIGH);  //se envía un pulso para activar el sensor
+  delayMicroseconds(10);
+  digitalWrite(TriggerPin, LOW);
 
+  tiempo = (pulseIn(EchoPin, HIGH)/2);
+
+  distancia = float(tiempo * 0.0343);
+
+  if (distancia >= 15) {
+   setTime(0,0,0,1,01,2018);                     }
+else if(distancia <= 7){
+ 
+ time_t t = now();//Declaramos la variable time_t t
+ Serial.print(minute(t));
+ Serial.print(": ");   
+ Serial.println(second(t)); 
+
+ delay(1000);
+} 
 
 //************SENSORES*********
 
