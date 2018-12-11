@@ -27,11 +27,12 @@
   <div class="row justify-content-md-center shadow p-3 m-5 mb-5 bg-white rounded" style="display: flex; align-items: center; width:85%; text-align: center; padding:30px;" >
   <div class="container">
   <div class="row justify-content-md-center col-md-12">
-    <div class="col-md-5 m-3">
+    <div class="col-md-12 m-3">
       <h3>Selecciona un método de reporte</h3>
     </div>
-
-        <div calss= "col-md-5">
+    <center>
+  <div class="row ustify-content-md-center">
+        <div class= "col-md-6">
 
     <div class="form-row align-items-center">
       <div class="col-md-9">
@@ -46,15 +47,36 @@
     </div>
 
         </div>
+
+        <div class= "col-md-6">
+
+    <div class="form-row align-items-center">
+      <div class="col-md-9">
+        <label class="mr-sm-2" for="tipoSensor">Selecciona una opción</label>
+        <select class="custom-select mr-sm-2" id="tipoSensor" onchange="tipoDeReporte();">
+          <option value="0" selected>con Tiempo en áreas</option>
+          <option value="1">con Tráfico en salidas </option>
+          <option value="2">con Temperatura por área </option>
+        </select>
+      </div>
+    </div>
+
+        </div>
+
+        </div>
+      </center>
         <div class="container">
           <div class="row justify-content-md-center  p-3 m-5 mb-5 ">
             <div>
               <script type="text/javascript">
               function tipoDeReporte() {
                 var e = document.getElementById('tipoReporte');
-                var resp = e.options[e.selectedIndex].text; //value para valor
-                var valor = e.options[e.selectedIndex].value;
-                document.getElementById('tituloReporte').innerHTML = resp;
+                var c = document.getElementById('tipoSensor');
+                var respReporte = e.options[e.selectedIndex].text; //value para valor
+                var valorReporte = e.options[e.selectedIndex].value;
+                var respSensor = c.options[c.selectedIndex].text;
+                var valorSensor = c.options[c.selectedIndex].value;
+                document.getElementById('tituloReporte').innerHTML = respReporte + " "+ respSensor;
               }
               </script>
               <h4 id="tituloReporte"> <script> tipoDeReporte();</script> </h4>
