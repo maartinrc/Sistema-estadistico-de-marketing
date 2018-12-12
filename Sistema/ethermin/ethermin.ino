@@ -20,11 +20,6 @@ byte server[] = { 192,168,1,64 }; // Direccion IP del servidor
 EthernetClient client;
 String macos;
 
-//**************DECLARACION DE VARIABLES PARA SENSOR INFRARROJO**********
-int conta; //Variable para guardar el conteo de los pulsos
-int sensor;
-
-
 //**********DECLARACION DE VARAIBLES PARA SENSOR ULTRASONICO***************
 
 const int EchoPin = 5;
@@ -55,12 +50,6 @@ void setup(void) {
 
   }
 
-
-  //************* INICIALIZAR VARIABLES DEL SENSOR INFRARROJO*********
-  conta = 0;
-  sensor = 8;
-  pinMode(sensor, INPUT);
-
   //***********INICIALIZACION DE VARIABLES DEL SENSOR ULTRASONICO************
   pinMode(TriggerPin, OUTPUT);
   pinMode(EchoPin, INPUT);
@@ -77,13 +66,6 @@ void setup(void) {
 
 void loop(void) {
   while(bandera){
-  //**************CONTEO DE PERSONAS (SENSOR INFRARROJO)******************
-   if ( digitalRead(sensor) == LOW ) {
-      conta++; //Incrementa el contador
-      //Serial.println(conta);
-     // delay(400);
-      }
-
 
   //*************CONTEO DE SEGUNDOS (SENSOR ULTRASONICO)********************
     digitalWrite(TriggerPin, HIGH);  //se envía un pulso para activar el sensor
@@ -149,12 +131,10 @@ else if(distancia <= 7){
   // Proceso de envio de muestras al servidor
 Serial.println("Connecting...");
   if (client.connect(server, 80)>0) {  // Conexion con el servidor
-    client.print("GET /SistemaEstadistico/PHP/insercionDatos.php?mac="); // Enviamos los datos por GET
+    client.print("GET /SistemaEstadistico/PHP/insercionDatosMin.php?mac="); // Enviamos los datos por GET
     client.print(macos);
     client.print("&tiempo=");
     client.print(tiempo);
-    client.print("&conteoPersonas=");
-    client.print(conta);
     client.print("&humedad=");
     client.print(humedad);
     client.print("&temperatura=");

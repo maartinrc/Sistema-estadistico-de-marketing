@@ -1,7 +1,7 @@
 #include <DHT.h>
 
 // Definimos el pin digital donde se conecta el sensor
-#define DHTPIN 13
+#define DHTPIN 9
 // Dependiendo del tipo de sensor
 #define DHTTYPE DHT11
  
